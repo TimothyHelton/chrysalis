@@ -13,10 +13,7 @@ def check_square(n: int) -> bool:
     :param n: number
     :return: True if number is square
     """
-    if n < 1:
-        return False
-    sqrt = int(n**0.5)
-    return sqrt * sqrt == n
+    return n > 0 and (n**0.5).is_integer()
 
 
 def complementary_dna(dna: str) -> str:
