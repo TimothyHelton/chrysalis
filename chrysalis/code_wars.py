@@ -7,6 +7,18 @@
 """
 
 
+def check_square(n: int) -> bool:
+    """Check if a number is a perfect square.
+
+    :param n: number
+    :return: True if number is square
+    """
+    if n < 1:
+        return False
+    sqrt = int(n**0.5)
+    return sqrt * sqrt == n
+
+
 def complementary_dna(dna: str) -> str:
     """Calculate complement DNA sequence.
 

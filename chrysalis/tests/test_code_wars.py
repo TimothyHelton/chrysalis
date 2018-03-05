@@ -10,6 +10,21 @@ import pytest
 from .. import code_wars
 
 
+# Test .check_square()
+check_square = {
+    'Zero': (0, False),
+    'Negative': (-4, False),
+    'Positive': (16, True),
+    'Large Number': (3413080033, False),
+}
+
+@pytest.mark.parametrize('n, expected',
+                         list(check_square.values()),
+                         ids=list(check_square.keys()))
+def test__check_square(n, expected):
+    assert code_wars.check_square(n) == expected
+
+    
 # Test complementary_dna()
 complementary_dna = {
     'All Letters': ('ATCG', 'TAGC'),
