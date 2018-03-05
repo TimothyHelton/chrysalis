@@ -33,11 +33,12 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
         'Topic :: Software Development :: Build Tools',
-        ],
+    ],
     keywords='EnterKeywordsHere',
     packages=find_packages(exclude=['docs', 'tests*']),
     install_requires=[
-        ],
+        'pytest',
+    ],
     package_dir={'chrysalis': 'chrysalis'},
     include_package_data=True,
     )
