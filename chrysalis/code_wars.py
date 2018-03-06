@@ -34,6 +34,15 @@ def complementary_dna(dna: str) -> str:
     return dna.translate(table)
 
 
+def count_vowels(phrase: str) -> int:
+    """Count the number of vowels in the phrase.
+
+    :param phrase: text to be examined
+    :return: number of vowels in phrase
+    """
+    return len([x for x in phrase.lower() if x in 'aeiou'])
+
+
 def pet_age(years: int) -> List[int]:
     """Calculate pet age for dogs and cats.
 

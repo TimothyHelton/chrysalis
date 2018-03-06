@@ -48,6 +48,22 @@ def test_complementary_dna_invalid_input():
         code_wars.complementary_dna('b')
 
 
+# Test .count_vowels()
+count_vowels = {
+    'All Vowels': ('aeiou', 5),
+    'White Space': ('a e  i   o    u', 5),
+    'None': ('bcd', 0),
+    'Mixed Case': ('An Example: story', 5),
+}
+
+
+@pytest.mark.parametrize('phrase, expected',
+                         list(count_vowels.values()),
+                         ids=list(count_vowels.keys()))
+def test__count_vowels(phrase, expected):
+    assert code_wars.count_vowels(phrase) == expected
+
+
 # Test pet_age()
 pet_age = {
     'One Year': (1, [1, 15, 15]),
