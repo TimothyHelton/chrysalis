@@ -5,7 +5,7 @@
 
 .. moduleauthor:: Timothy Helton <timothy.j.helton@gmail.com>
 """
-from typing import List
+from typing import List, Union
 
 
 def check_square(n: int) -> bool:
@@ -62,6 +62,30 @@ def pet_age(years: int) -> List[int]:
         raise ValueError('years must be greater than or equal to 1')
 
     return [years, adult_age(4), adult_age(5)] if years > 1 else [years, 15, 15]
+
+
+def rectangle_to_squares(length: int, width: int,
+                         squares: Union[None, list]=None) -> Union[None, list]:
+    """Calculate the number of squares in a rectangle.
+
+    ..note:: if given inputs for a square the output will be None
+    :param length: rectangle length
+    :param width: rectangle width
+    :param squares: previous list of squares
+    :return: sizes of squares contained in rectangle
+    """
+    if squares is None:
+        squares = []
+    if length == width and not squares:
+        return None
+
+    length, width = sorted([length, width], reverse=True)
+    squares.append(width)
+    new_length = length - width
+    if new_length > 0:
+        rectangle_to_squares(new_length, width, squares)
+
+    return squares
 
 
 if __name__ == '__main__':

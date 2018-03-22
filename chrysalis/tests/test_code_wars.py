@@ -84,5 +84,22 @@ def test_pet_age_exception():
         code_wars.pet_age(-3)
 
 
+# Test .rectangle_to_squares()
+rectangle_to_squares = {
+    'square_input': (5, 5, None),
+    'long': (5, 3, [3, 2, 1, 1]),
+    'tall': (3, 5, [3, 2, 1, 1]),
+    'even': (20, 14, [14, 6, 6, 2, 2, 2]),
+}
+
+
+@pytest.mark.parametrize('length, width, expected',
+                         list(rectangle_to_squares.values()),
+                         ids=list(rectangle_to_squares.keys()))
+def test__rectangle_to_squares(length, width, expected):
+    print(code_wars.rectangle_to_squares(length, width))
+    assert code_wars.rectangle_to_squares(length, width) == expected
+
+
 if __name__ == '__main__':
     pass
