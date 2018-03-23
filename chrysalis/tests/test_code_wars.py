@@ -48,7 +48,7 @@ def test_complementary_dna_invalid_input():
         code_wars.complementary_dna('b')
 
 
-# Test .count_vowels()
+# Test count_vowels()
 count_vowels = {
     'All Vowels': ('aeiou', 5),
     'White Space': ('a e  i   o    u', 5),
@@ -62,6 +62,21 @@ count_vowels = {
                          ids=list(count_vowels.keys()))
 def test__count_vowels(phrase, expected):
     assert code_wars.count_vowels(phrase) == expected
+
+
+# Test is_pangram()
+is_pangram = {
+    'Not Pangram': ('abc', False),
+    'Pangram': ('The quick, brown fox jumps over the lazy dog!', True),
+    'Numbers': ('ABCD45EFGH,IJK,LMNOPQR56STUVW3XYZ', True),
+}
+
+
+@pytest.mark.parametrize('text, expected',
+                         list(is_pangram.values()),
+                         ids=list(is_pangram.keys()))
+def test__is_pangram(text, expected):
+    assert code_wars.is_pangram(text) == expected
 
 
 # Test pet_age()
@@ -84,7 +99,7 @@ def test_pet_age_exception():
         code_wars.pet_age(-3)
 
 
-# Test .rectangle_to_squares()
+# Test rectangle_to_squares()
 rectangle_to_squares = {
     'square_input': (5, 5, None),
     'long': (5, 3, [3, 2, 1, 1]),

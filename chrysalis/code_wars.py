@@ -5,6 +5,7 @@
 
 .. moduleauthor:: Timothy Helton <timothy.j.helton@gmail.com>
 """
+import string
 from typing import List, Union
 
 
@@ -41,6 +42,17 @@ def count_vowels(phrase: str) -> int:
     :return: number of vowels in phrase
     """
     return len([x for x in phrase.lower() if x in 'aeiou'])
+
+
+def is_pangram(text: str) -> bool:
+    """Determine if text is a pangram.
+
+    ..note:: A pangram is a string that contains every single letter of the \
+        alphabet at least once (case is irrelevant).
+    :param text: text to evaluate
+    :return: True if text is a pangram
+    """
+    return set(string.ascii_lowercase) <= set(text.lower())
 
 
 def pet_age(years: int) -> List[int]:
