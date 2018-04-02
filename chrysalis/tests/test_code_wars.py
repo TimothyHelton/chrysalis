@@ -116,5 +116,19 @@ def test__rectangle_to_squares(length, width, expected):
     assert code_wars.rectangle_to_squares(length, width) == expected
 
 
+# Test sort_odd()
+sort_odd = {
+    'empty': ([], []),
+    'example': ([5, 3, 2, 8, 1, 4], [1, 3, 2, 8, 5, 4]),
+}
+
+
+@pytest.mark.parametrize('values, expected',
+                         list(sort_odd.values()),
+                         ids=list(sort_odd.keys()))
+def test_sort_odd(values, expected):
+    assert code_wars.sort_odd(values) == expected
+
+
 if __name__ == '__main__':
     pass
