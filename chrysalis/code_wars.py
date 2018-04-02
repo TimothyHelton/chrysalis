@@ -8,6 +8,8 @@
 import string
 from typing import List, Union
 
+import numpy as np
+
 
 def check_square(n: int) -> bool:
     """Check if a number is a perfect square.
@@ -98,6 +100,18 @@ def rectangle_to_squares(length: int, width: int,
         rectangle_to_squares(new_length, width, squares)
 
     return squares
+
+
+def sort_odd(values: iter) -> iter:
+    """Return array with odd values sorted in ascending order.
+
+    :param values: array of integer values
+    :return: sorted array
+    """
+    arr = np.array(values)
+    odds = np.sort(arr[arr % 2 != 0])
+    arr[np.isin(arr, odds)] = odds
+    return arr.tolist()
 
 
 if __name__ == '__main__':
