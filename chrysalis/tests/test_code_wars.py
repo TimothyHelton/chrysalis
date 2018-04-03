@@ -60,7 +60,7 @@ count_vowels = {
 @pytest.mark.parametrize('phrase, expected',
                          list(count_vowels.values()),
                          ids=list(count_vowels.keys()))
-def test__count_vowels(phrase, expected):
+def test_count_vowels(phrase, expected):
     assert code_wars.count_vowels(phrase) == expected
 
 
@@ -75,7 +75,7 @@ is_pangram = {
 @pytest.mark.parametrize('text, expected',
                          list(is_pangram.values()),
                          ids=list(is_pangram.keys()))
-def test__is_pangram(text, expected):
+def test_is_pangram(text, expected):
     assert code_wars.is_pangram(text) == expected
 
 
@@ -111,7 +111,7 @@ rectangle_to_squares = {
 @pytest.mark.parametrize('length, width, expected',
                          list(rectangle_to_squares.values()),
                          ids=list(rectangle_to_squares.keys()))
-def test__rectangle_to_squares(length, width, expected):
+def test_rectangle_to_squares(length, width, expected):
     print(code_wars.rectangle_to_squares(length, width))
     assert code_wars.rectangle_to_squares(length, width) == expected
 
@@ -121,6 +121,30 @@ sort_odd = {
     'empty': ([], []),
     'example': ([5, 3, 2, 8, 1, 4], [1, 3, 2, 8, 5, 4]),
 }
+
+
+# Test .replace_zero()
+replace_zero = {
+    '0, 1': ([0, 1], 0),
+    '1, 0': ([1, 0], 1),
+    '0, 0, 1': ([0, 0, 1], 1),
+    '1, 0, 0': ([1, 0, 0], 1),
+    '1, 0, 1, 0': ([1, 0, 1, 0], 1),
+    '0, 1, 0, 1, 0': ([0, 1, 0, 1, 0], 2),
+    '0, 0, 1, 0, 0': ([0, 0, 1, 0, 0], 3),
+    '1, 1, 0, 1, 1, 0, 1, 1': ([1, 1, 0, 1, 1, 0, 1, 1], 5),
+    '1, 1, 1, 0, 1, 1, 0, 1, 1, 1': ([1, 1, 1, 0, 1, 1, 0, 1, 1, 1], 6),
+    '0, 1, 1, 1, 1, 1, 0': ([0, 1, 1, 1, 1, 1, 0], 6),
+    '1, 0, 0, 0, 1': ([1, 0, 0, 0, 1], 3),
+    '1, 0, 1, 0, 1, 1, 1, 1': ([1, 0, 1, 0, 1, 1, 1, 1], 3),
+}
+
+
+@pytest.mark.parametrize('array, expected',
+                         list(replace_zero.values()),
+                         ids=list(replace_zero.keys()))
+def test_replace_zero(array, expected):
+    assert code_wars.replace_zero(array) == expected
 
 
 @pytest.mark.parametrize('values, expected',

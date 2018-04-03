@@ -102,6 +102,27 @@ def rectangle_to_squares(length: int, width: int,
     return squares
 
 
+def replace_zero(array: iter) -> int:
+    """Find index to maximize number of consecutive ones in array.
+
+    ..note:: If there is a tie for length of consecutive numbers the last \
+        index will be returned.
+    :param array: sequence of ones and zeros
+    :return: index of zero to replace maximizing the length of ones
+    """
+    zeros = [n for n, v in enumerate(array) if v == 0]
+    if len(zeros) == 1:
+        return zeros[0]
+    begin = zeros[1]
+    end = len(array) - zeros[-2] - 1
+    z = [0] + zeros + [len(array) - 1]
+    counts = [z[n + 2] - z[n] - 1 for n in range(len(z) - 2)]
+    counts[0] = begin
+    counts[-1] = end
+
+    return zeros[max([n for n, v in enumerate(counts) if v == max(counts)])]
+
+
 def sort_odd(values: iter) -> iter:
     """Return array with odd values sorted in ascending order.
 
