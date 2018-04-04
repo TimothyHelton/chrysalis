@@ -5,8 +5,9 @@
 
 .. moduleauthor:: Timothy Helton <timothy.j.helton@gmail.com>
 """
+from collections import defaultdict
 import string
-from typing import List, Union
+from typing import Dict, List, Union
 
 import numpy as np
 
@@ -44,6 +45,25 @@ def count_vowels(phrase: str) -> int:
     :return: number of vowels in phrase
     """
     return len([x for x in phrase.lower() if x in 'aeiou'])
+
+
+def interest_calc(yearly_deposit: int, goal: int) -> Dict[int, int]:
+    """Calculate years to achieve financial goal for return rates between 1-6%.
+
+    :param yearly_deposit: annual contribution to account
+    :param goal: minimum desired end dollar value of account
+    :return: years required to achieve goal assuming interest rates 1-6%.
+    """
+    forecast = defaultdict(int)
+    for int_rate in range(1, 7):
+        balance = 0
+        year = 0
+        while balance < goal:
+            year += 1
+            balance = (balance + yearly_deposit) * (1 + int_rate / 100)
+            forecast[int_rate] = year
+
+    return forecast
 
 
 def is_pangram(text: str) -> bool:

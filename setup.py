@@ -37,6 +37,7 @@ setup(
     keywords='EnterKeywordsHere',
     packages=find_packages(exclude=['docs', 'tests*']),
     install_requires=[
+        'numpy',
         'pytest',
     ],
     package_dir={'chrysalis': 'chrysalis'},
