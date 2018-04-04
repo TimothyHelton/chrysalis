@@ -72,6 +72,20 @@ is_pangram = {
 }
 
 
+# Test .interest_calc()
+interest_calc = {
+    '100, 300': (100, 300, {1: 3, 2: 3, 3: 3, 4: 3, 5: 3, 6: 3}),
+    '100, 700': (100, 700, {1: 7, 2: 7, 3: 7, 4: 7, 5: 6, 6: 6}),
+}
+
+
+@pytest.mark.parametrize('deposit, goal, expected',
+                         list(interest_calc.values()),
+                         ids=list(interest_calc.keys()))
+def test__interest_calc(deposit, goal, expected):
+    assert code_wars.interest_calc(deposit, goal) == expected
+
+
 @pytest.mark.parametrize('text, expected',
                          list(is_pangram.values()),
                          ids=list(is_pangram.keys()))
