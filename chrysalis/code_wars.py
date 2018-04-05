@@ -6,10 +6,23 @@
 .. moduleauthor:: Timothy Helton <timothy.j.helton@gmail.com>
 """
 from collections import defaultdict
+from itertools import chain, zip_longest
 import string
 from typing import Dict, List, Union
 
 import numpy as np
+
+
+def alternate_sort(values: list) -> list:
+    """Sort items by absolute value and return alternating negative positive.
+
+    :param values: items to be sorted
+    :return: sorted values
+    """
+    values = sorted(values, key=abs)
+    pos = [x for x in values if x >= 0]
+    neg = [x for x in values if x < 0]
+    return [x for x in chain(*zip_longest(neg, pos)) if x is not None]
 
 
 def check_square(n: int) -> bool:
@@ -33,8 +46,8 @@ def complementary_dna(dna: str) -> str:
     valid_input = 'ATCG'
     if set(dna).difference(valid_input):
         raise ValueError('Only "A", "T", "C", and "G" are valid inputs')
-
     table = str.maketrans('ATCG', 'TAGC')
+
     return dna.translate(table)
 
 

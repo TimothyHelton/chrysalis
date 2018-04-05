@@ -10,6 +10,24 @@ import pytest
 from .. import code_wars
 
 
+# Test .alternate_sort()
+alternate_sort = {
+    'even length': ([5, 2, -3, -9, -4, 8], [-3, 2, -4, 5, -9, 8]),
+    'odd length': ([5, -42, 2, -3, -4, 8, 9], [-3, 2, -4, 5, -42, 8, 9]),
+    'positive': ([4, 3, 2, 1], [1, 2, 3, 4]),
+    'negative': ([-1, -2, -3, -4], [-1, -2, -3, -4]),
+    'zero': ([3, 2, 1, 0, -1, -2], [-1, 0, -2, 1, 2, 3]),
+    'duplicates': ([-5, -2, 3, 9, 4, -2, 9, -5], [-2, 3, -2, 4, -5, 9, -5, 9]),
+}
+
+
+@pytest.mark.parametrize('values, expected',
+                         list(alternate_sort.values()),
+                         ids=list(alternate_sort.keys()))
+def test__alternate_sort(values, expected):
+    assert code_wars.alternate_sort(values) == expected
+
+
 # Test check_square()
 check_square = {
     'Zero': (0, False),
