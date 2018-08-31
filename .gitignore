@@ -47,6 +47,7 @@ chrysalis/.idea/*
 
 # pytest files #
 .cache/*
+.pytest_cache/*
 
 # Raw Data #
 data/*
