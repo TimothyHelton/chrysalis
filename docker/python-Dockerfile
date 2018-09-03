@@ -1,4 +1,6 @@
-FROM python:3.6
+FROM python:3.6-alpine
+
+RUN apk add --update alpine-sdk
 
 WORKDIR /usr/src/chrysalis
 
