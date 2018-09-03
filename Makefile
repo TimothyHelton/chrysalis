@@ -23,5 +23,5 @@ docs:
 	docker container run \
 		-it --rm \
 		-v $(MOUNT_DIR):/usr/src/$(PROJECT) \
-		python_$(PROJECT) \
-			/bin/bash -c "cd docs; make html"
+		-w /usr/src/$(PROJECT)/docs \
+		python_$(PROJECT) make html
