@@ -10,6 +10,7 @@ Chrysalis's Documentation
    :maxdepth: 2
    :caption: Contents:
 
+   chrysalis
 
 
 Indices and tables

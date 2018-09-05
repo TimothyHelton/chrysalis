@@ -5,7 +5,7 @@ from pkg_resources import get_distribution, DistributionNotFound
 import os.path as osp
 from . import code_wars
 
-__version__ = '0.0.0'
+__version__ = '0.1.0'
 
 try:
     _dist = get_distribution('chrysalis')
