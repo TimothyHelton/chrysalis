@@ -12,9 +12,12 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
+import os
+import sys
+
+from chrysalis import __version__
+
+sys.path.insert(0, os.path.abspath('../chrysalis'))
 
 
 # -- Project information -----------------------------------------------------
@@ -24,9 +27,9 @@ copyright = '2018, Timothy Helton'
 author = 'Timothy Helton'
 
 # The short X.Y version
-version = ''
+version = __version__
 # The full version, including alpha/beta/rc tags
-release = '0.0.0'
+release = __version__
 
 
 # -- General configuration ---------------------------------------------------
@@ -79,7 +82,7 @@ pygments_style = 'sphinx'
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = 'agogo'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
