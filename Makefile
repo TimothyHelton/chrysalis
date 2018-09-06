@@ -30,7 +30,7 @@ docs:
 		-v $(MOUNT_DIR):/usr/src/$(PROJECT) \
 		-w /usr/src/$(PROJECT)/docs \
 		python_$(PROJECT) make html
-	docker container rm -f nginx_$(PROJECT)
+	docker container rm -f nginx_$(PROJECT) || true
 	docker container run -d \
 		-p 80:80 \
 		-v $(MOUNT_DIR)/docs/_build/html:/usr/share/nginx/html:ro \
