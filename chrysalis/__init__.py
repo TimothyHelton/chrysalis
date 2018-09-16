@@ -4,6 +4,7 @@
 from pkg_resources import get_distribution, DistributionNotFound
 import os.path as osp
 from . import code_wars
+from . import logging_example
 
 __version__ = '0.1.0'
 
