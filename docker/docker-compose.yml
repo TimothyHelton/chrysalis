@@ -1,0 +1,53 @@
+version: '3.7'
+
+services:
+
+  nginx:
+    container_name: chrysalis_nginx
+    image: nginx:alpine
+    ports:
+      - 8080:80
+    volumes:
+      - ../docs/_build/html:/usr/share/nginx/html:ro
+
+#  pgadmin:
+#    container_name: chrysalis_pgadmin
+#    image: dpage/pgadmin4
+#    ports:
+#      - 443:443
+#    volumes:
+#      - /private/var/lib/pgadmin:/var/lib/pgadmin
+#      - /path/to/certificate.cert:/certs/server.cert
+#      - /path/to/certificate.key:/certs/server.key
+#    environment:
+#      - PGADMIN_DEFAULT_EMAIL=tim@chrysalis.com
+#      - PGADMIN_DEFAULT_PASSWORD=SuperSecret
+#      - PGADMIN_ENABLE_TLS=True
+
+#    postgres:
+#      container_name: chrysalis_postgres
+#      image: postgres:alpine
+#      environment:
+#      - POSTGRES_USER=${POSTGRES_USER}
+#      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+#      - POSTGRES_DB=${POSTGRES_DB}
+#      restart: always
+#      volumes:
+#        - chrysalis-db:/var/lib/postgresql/data
+
+  python:
+    container_name: chrysalis_python
+    build:
+      context: ..
+      dockerfile: docker/python-Dockerfile
+    image: chrysalis_python
+    tty: true
+    volumes:
+      - ..:/usr/src/chrysalis
+#    depends_on:
+#    - postgres
+
+
+#volumes:
+#  chrysalis-db:
+#    name: chrysalis-db
