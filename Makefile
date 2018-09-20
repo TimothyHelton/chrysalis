@@ -6,15 +6,22 @@ SRC_DIR=/usr/src/chrysalis
 .PHONY: docker docs
 
 docker-down:
-	cd docker && docker-compose down
+	docker-compose -f docker/docker-compose.yml down
 
 docker-up:
-	cd docker && docker-compose up -d
+	. keys && \
+	docker-compose -f docker/docker-compose.yml up -d
 
 docs: docker-up
-	docker container exec $(PROJECT)_python /bin/bash -c "cd docs && make html"
+	docker container exec $(PROJECT)_python \
+		/bin/bash -c "cd docs && make html"
 	open http://localhost:8080
 
-view-docs:
+psql: docker-up
+	. keys && \
+	docker container exec -it $(PROJECT)_postgres \
+		psql -U ${POSTGRES_USER} $(PROJECT)
+
+view-docs: docker-up
 	open http://localhost:8080
 

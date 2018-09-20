@@ -15,6 +15,7 @@ dist/*
 notebooks/.ipynb_checkpoints/*
 
 # Logs and databases #
+keys
 *.log
 *.sql
 *.sqlite
