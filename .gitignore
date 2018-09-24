@@ -20,6 +20,7 @@ notebooks/.ipynb_checkpoints/*
 *.sqlite
 
 # OS generatee files #
+envfile
 .DS_Store
 .DS_store?
 ._*

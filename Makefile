@@ -3,37 +3,24 @@ MOUNT_DIR=$(shell pwd)
 SRC_DIR=/usr/src/chrysalis
 
 
-.PHONY: docker docs
+include envfile
+.PHONY: docs
 
-docker:
-	# Python Container
-	docker image build \
-		--tag python_$(PROJECT) \
-		-f docker/python-Dockerfile \
-		--squash .
-	# NGINX Container
-	docker image build \
-		--tag nginx_$(PROJECT) \
-		-f docker/nginx-Dockerfile \
-		--squash .
-	# Postgres Container
-	# TODO create postgres-Dockerfile
-	#docker image build \
-		#--tag postgres_$(PROJECT) \
-		#-f docker/postgres-Dockerfile \
-		#--squash .
-	docker system prune -f
+docker-down:
+	docker-compose -f docker/docker-compose.yml down
 
-docs:
-	docker container run \
-		-it --rm \
-		-v $(MOUNT_DIR):/usr/src/$(PROJECT) \
-		-w /usr/src/$(PROJECT)/docs \
-		python_$(PROJECT) make html
-	docker container rm -f nginx_$(PROJECT) || true
-	docker container run -d \
-		-p 80:80 \
-		-v $(MOUNT_DIR)/docs/_build/html:/usr/share/nginx/html:ro \
-		--name nginx_$(PROJECT) \
-		nginx_$(PROJECT)
+docker-up:
+	docker-compose -f docker/docker-compose.yml up -d
+
+docs: docker-up
+	docker container exec $(PROJECT)_python \
+		/bin/bash -c "cd docs && make html"
+	open http://localhost:8080
+
+psql: docker-up
+	docker container exec -it $(PROJECT)_postgres \
+		psql -U ${POSTGRES_USER} $(PROJECT)
+
+view-docs: docker-up
+	open http://localhost:8080
 
