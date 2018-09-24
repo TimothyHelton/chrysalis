@@ -15,12 +15,12 @@ dist/*
 notebooks/.ipynb_checkpoints/*
 
 # Logs and databases #
-keys
 *.log
 *.sql
 *.sqlite
 
 # OS generatee files #
+envfile
 .DS_Store
 .DS_store?
 ._*
