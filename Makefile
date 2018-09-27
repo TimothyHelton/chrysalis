@@ -1,7 +1,9 @@
 PROJECT=chrysalis
 MOUNT_DIR=$(shell pwd)
 SRC_DIR=/usr/src/chrysalis
-
+VERSION=$(shell echo $(shell cat $(PROJECT)/__init__.py | \
+			grep "^__version__" | \
+			cut -d = -f 2))
 
 include envfile
 .PHONY: docs
