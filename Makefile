@@ -1,7 +1,9 @@
 PROJECT=chrysalis
 MOUNT_DIR=$(shell pwd)
 SRC_DIR=/usr/src/chrysalis
-
+VERSION=$(shell echo $(shell cat $(PROJECT)/__init__.py | \
+			grep "^__version__" | \
+			cut -d = -f 2))
 
 include envfile
 .PHONY: docs
@@ -16,6 +18,9 @@ docs: docker-up
 	docker container exec $(PROJECT)_python \
 		/bin/bash -c "cd docs && make html"
 	open http://localhost:8080
+
+pgadmin: docker-up
+	open http://localhost:5000
 
 psql: docker-up
 	docker container exec -it $(PROJECT)_postgres \

@@ -11,20 +11,6 @@ services:
     volumes:
       - ../docs/_build/html:/usr/share/nginx/html:ro
 
-#  pgadmin:
-#    container_name: chrysalis_pgadmin
-#    image: dpage/pgadmin4
-#    ports:
-#      - 443:443
-#    volumes:
-#      - /private/var/lib/pgadmin:/var/lib/pgadmin
-#      - /path/to/certificate.cert:/certs/server.cert
-#      - /path/to/certificate.key:/certs/server.key
-#    environment:
-#      - PGADMIN_DEFAULT_EMAIL=tim@chrysalis.com
-#      - PGADMIN_DEFAULT_PASSWORD=SuperSecret
-#      - PGADMIN_ENABLE_TLS=True
-
   postgres:
     container_name: chrysalis_postgres
     image: postgres:alpine
@@ -37,6 +23,17 @@ services:
     restart: always
     volumes:
       - chrysalis-db:/var/lib/postgresql/data
+
+  pgadmin:
+    container_name: chrysalis_pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    external_links:
+      - chrysalis_postgres:chrysalis_postgres
+    ports:
+    - 5000:80
 
   python:
     container_name: chrysalis_python
