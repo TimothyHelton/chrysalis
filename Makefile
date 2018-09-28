@@ -19,6 +19,9 @@ docs: docker-up
 		/bin/bash -c "cd docs && make html"
 	open http://localhost:8080
 
+pgadmin: docker-up
+	open http://localhost:5000
+
 psql: docker-up
 	docker container exec -it $(PROJECT)_postgres \
 		psql -U ${POSTGRES_USER} $(PROJECT)
