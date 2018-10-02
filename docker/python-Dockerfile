@@ -1,17 +1,14 @@
 FROM python:3.6-alpine
 
-RUN apk add --update \
-    alpine-sdk \
-    bash
-
 WORKDIR /usr/src/chrysalis
 
 COPY . .
 
-RUN pip install --upgrade pip
-
-RUN pip install --no-cache-dir -r requirements.txt
-
-RUN pip install -e .
+RUN apk add --update \
+        alpine-sdk \
+        bash \
+    && pip install --upgrade pip \
+    && pip install --no-cache-dir -r requirements.txt \
+    && pip install -e .
 
 CMD [ "/bin/bash" ]
