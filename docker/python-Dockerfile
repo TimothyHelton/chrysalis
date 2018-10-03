@@ -1,5 +1,24 @@
 FROM python:3.6
 
+RUN apt-get update \
+    && apt-get install -y \
+        protobuf-compiler \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /opt
+
+RUN git clone \
+        --branch master \
+        --single-branch \
+        --depth 1 \
+        https://github.com/tensorflow/models.git
+
+WORKDIR /opt/models/research
+
+RUN protoc object_detection/protos/*.proto --python_out=.
+
+ENV PYTHONPATH $PYTHONPATH:`pwd`:`pwd`/slim
+
 WORKDIR /usr/src/chrysalis
 
 COPY . .
