@@ -40,6 +40,10 @@ setup(
         'numpy',
         'pytest',
     ],
+    extras_require={
+        'tf_cpu': ['tensorflow'],
+        'tf_gpu': ['tensorflow-gpu'],
+    },
     package_dir={'chrysalis': 'chrysalis'},
     include_package_data=True,
     )
