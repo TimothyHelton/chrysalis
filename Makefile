@@ -12,6 +12,7 @@ docker-down:
 	docker-compose -f docker/docker-compose.yml down
 
 docker-up:
+	. envfile
 	docker-compose -f docker/docker-compose.yml up -d
 
 docs: docker-up
