@@ -1,8 +1,8 @@
 # Compiled source #
-build/*
+build
 *.com
-dist/*
-*.egg-info/*
+dist
+*.egg-info
 *.class
 *.dll
 *.exe
@@ -43,18 +43,22 @@ Thumbs.db
 *.profile
 
 # PyCharm files #
-.idea/*
-chrysalis/.idea/*
+.idea
+chrysalis/.idea
 
 # pytest files #
 .cache/*
-.pytest_cache/*
+.pytest_cache
+pytest
 
 # Raw Data #
-data/*
+data
 
 # Sphinx files #
-docs/_build/*
-docs/_static/*
-docs/_templates/*
+docs/_build
+docs/_static
+docs/_templates
 docs/Makefile
+
+# TensorFlow files #
+models
