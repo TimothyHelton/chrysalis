@@ -28,8 +28,17 @@
 
     `git clone git@github.com:tensorflow/models.git /opt`
 
-1. Create a soft link to the TensorFlow models directory in the project directory.
+1. Create a soft link to the TensorFlow models directory in the project
+directory.
 
     `ln -s /opt/models`
 
 1. Set the research and object detection directories as `Sources Root`.
+
+
+### pytest
+Make sure to exclude the models directory from the test runner by adding the
+ignore argument.
+The following is the full pytest command.
+
+`py.test -vvv -r all --basetemp=pytest --ff --doctest-modules --ignore=models`
