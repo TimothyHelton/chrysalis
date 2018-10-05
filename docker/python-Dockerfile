@@ -17,7 +17,7 @@ WORKDIR /opt/models/research
 
 RUN protoc object_detection/protos/*.proto --python_out=.
 
-ENV PYTHONPATH $PYTHONPATH:`pwd`:`pwd`/slim
+ENV PYTHONPATH $PYTHONPATH:/opt/models/research:/opt/models/research/slim:/opt/models/research/object_detection
 
 WORKDIR /usr/src/chrysalis
 
