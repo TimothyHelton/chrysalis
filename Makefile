@@ -17,8 +17,24 @@ docker-up:
 
 docs: docker-up
 	docker container exec $(PROJECT)_python \
-		/bin/bash -c "cd docs && make html"
+		/bin/bash -c "pip install -e . && cd docs && make html"
 	open http://localhost:8080
+
+docs-init: docker-up
+	rm -rf docs/*
+	docker container exec $(PROJECT)_python \
+		/bin/bash -c \
+			"cd docs \
+			&& sphinx-quickstart -q \
+			-p $(PROJECT) \
+			-a EnterAuthorName \
+			-v $(VERSION) \
+			--ext-autodoc \
+			--ext-viewcode \
+			--makefile \
+			--no-batchfile"
+	git fetch
+	git checkout origin/master -- docs/
 
 pgadmin: docker-up
 	open http://localhost:5000
@@ -29,4 +45,3 @@ psql: docker-up
 
 view-docs: docker-up
 	open http://localhost:8080
-
