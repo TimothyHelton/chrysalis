@@ -82,6 +82,29 @@ def test_count_vowels(phrase, expected):
     assert code_wars.count_vowels(phrase) == expected
 
 
+# Test matrix_add()
+matrix_add = {
+    '2D': (([[1, -2], [-3, 4]],
+            [[2, -1], [0, -1]]),
+           [[3, -3], [-3, 3]]),
+    '3D': (([[1, -2, 3], [-4, 5, -6], [7, -8, 9]],
+            [[1, 1, 0], [1, -2, 3], [-2, 2, -2]]),
+           [[2, -1, 3], [-3, 3, -3], [5, -6, 7]]),
+}
+
+
+@pytest.mark.parametrize('arrays, actual',
+                         list(matrix_add.values()),
+                         ids=list(matrix_add.keys()))
+def test_matrix_add(arrays, actual):
+    assert code_wars.matrix_add(*arrays) == actual
+
+
+def test_matrix_add_exception():
+    with pytest.raises(ValueError):
+        code_wars.matrix_add([[1, 2], [3, 4]], [[1, 2, 3], [4, 5, 6]])
+
+
 # Test is_pangram()
 is_pangram = {
     'Not Pangram': ('abc', False),
