@@ -10,7 +10,7 @@ from typing import Iterator, Tuple
 
 
 def tile(start: Tuple[int], end: Tuple[int], tile_size: int,
-         overlap: int=0) -> Iterator[Tuple[int]]:
+         overlap: int=0) -> Iterator[Tuple[int, ...]]:
     """
     Tile rectangle with overlapping chips without padded boarder.
 
@@ -21,7 +21,8 @@ def tile(start: Tuple[int], end: Tuple[int], tile_size: int,
     :return: coordinates of next chip \
         (min column, min row, max column, max row)
     """
-    def boundary(first_val: int, next_val: int, max_val: int) -> tuple:
+    def boundary(first_val: int, next_val: int, max_val: int) \
+            -> Tuple[int, ...]:
         """
         Determine tile boundary conditions.
 
