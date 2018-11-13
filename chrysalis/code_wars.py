@@ -87,6 +87,9 @@ def matrix_add(*arrays: List[List[int]]) -> List[List[int]]:
     :type arrays: arrays to be combined
     :return: summation array
     """
+    shape = [(len(x), len(x[0])) for x in arrays]
+    if len(set(shape)) != 1:
+        raise ValueError('Given matrices are not the same size.')
     return [list(map(add, *x)) for x in zip(*arrays)]
 
 

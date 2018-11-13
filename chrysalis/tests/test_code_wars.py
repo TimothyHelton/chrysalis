@@ -100,6 +100,11 @@ def test_matrix_add(arrays, actual):
     assert code_wars.matrix_add(*arrays) == actual
 
 
+def test_matrix_add_exception():
+    with pytest.raises(ValueError):
+        code_wars.matrix_add([[1, 2], [3, 4]], [[1, 2, 3], [4, 5, 6]])
+
+
 # Test is_pangram()
 is_pangram = {
     'Not Pangram': ('abc', False),
