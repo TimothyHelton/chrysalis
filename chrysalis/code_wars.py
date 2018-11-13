@@ -7,6 +7,7 @@
 """
 from collections import defaultdict
 from itertools import chain, zip_longest
+from operator import add
 import string
 from typing import Dict, List, Union
 
@@ -77,6 +78,16 @@ def interest_calc(yearly_deposit: int, goal: int) -> Dict[int, int]:
             forecast[int_rate] = year
 
     return forecast
+
+
+def matrix_add(*arrays: List[List[int]]) -> List[List[int]]:
+    """
+    Elementwise summation of arrays.
+
+    :type arrays: arrays to be combined
+    :return: summation array
+    """
+    return [list(map(add, *x)) for x in zip(*arrays)]
 
 
 def is_pangram(text: str) -> bool:
