@@ -1,4 +1,4 @@
-Copyright (c) 2018, Timothy Helton.
+Copyright (c) 2019, Timothy Helton.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
