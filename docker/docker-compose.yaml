@@ -1,10 +1,12 @@
-version: '3'
+version: '3.7'
 
 services:
 
   nginx:
     container_name: chrysalis_nginx
     image: nginx:alpine
+    networks:
+      - chrysalis-network
     ports:
       - 8080:80
     restart: always
@@ -18,6 +20,8 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
+    networks:
+      - chrysalis-network
     ports:
       - 5432:5432
     restart: always
@@ -27,24 +31,39 @@ services:
   pgadmin:
     container_name: chrysalis_pgadmin
     image: dpage/pgadmin4
+    depends_on:
+      - postgres
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     external_links:
       - chrysalis_postgres:chrysalis_postgres
+    networks:
+      - chrysalis-network
     ports:
-    - 5000:80
+      - 5000:80
 
   python:
     container_name: chrysalis_python
     build:
       context: ..
-      dockerfile: docker/python-Dockerfile
+      dockerfile: docker/python.Dockerfile
+    depends_on:
+      - postgres
     image: chrysalis_python
+    networks:
+      - chrysalis-network
+    ports:
+      - 8888:8080
     restart: always
     tty: true
     volumes:
       - ..:/usr/src/chrysalis
 
+networks:
+  chrysalis-network:
+    name: chrysalis
+
 volumes:
   chrysalis-db:
+
