@@ -17,7 +17,7 @@ import warnings
 
 import matplotlib.pyplot as plt
 
-from chrysalis.globals import FONT_SIZE, PACKAGE_ROOT
+from chrysalis.pkg_globals import FONT_SIZE, PACKAGE_ROOT
 from chrysalis.exceptions import InputError
 
 

@@ -89,8 +89,11 @@ setup(
     ),
     install_requires=[
         'click',
+        'pandas',
         'Pillow',
+        'matplotlib',
         'numpy',
+        'sqlalchemy',
     ],
     extras_require={
          'all': combine_dependencies(dependencies.keys()),
